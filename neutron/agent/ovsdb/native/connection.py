@@ -13,6 +13,7 @@
 #    under the License.
 
 import os
+import time
 import threading
 import traceback
 
@@ -156,6 +157,8 @@ class Connection(object):
                                                   tb=traceback.format_exc())
                     txn.results.put(er)
                 self.txns.task_done()
+            # Temporary fix for high CPU usage
+            time.sleep(0.01)
 
     def queue_txn(self, txn):
         self.txns.put(txn)

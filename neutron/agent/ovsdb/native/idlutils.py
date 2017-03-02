@@ -14,6 +14,7 @@
 
 import collections
 import os
+import sys
 import time
 import uuid
 
@@ -77,7 +78,9 @@ def row_by_record(idl_, table, record):
         # Not a UUID string, continue lookup by other means
         pass
     except KeyError:
-        raise RowNotFound(table=table, col='uuid', match=record)
+        if sys.platform != 'win32':
+            # Not needed in Windows case
+            raise RowNotFound(table=table, col='uuid', match=record)
 
     rl = _LOOKUP_TABLE.get(table, RowLookup(table, get_index_column(t), None))
     # no table means uuid only, no column means lookup table only has one row

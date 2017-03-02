@@ -18,7 +18,7 @@ from neutron_lib import constants as n_consts
 from oslo_log import log as logging
 
 from neutron.agent import firewall
-from neutron.agent.linux import ip_lib
+from neutron.agent.common import ip_lib
 from neutron.agent.linux.openvswitch_firewall import constants as ovsfw_consts
 from neutron.common import utils
 from neutron.plugins.ml2.drivers.openvswitch.agent.common import constants \

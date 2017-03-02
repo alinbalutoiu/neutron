@@ -15,6 +15,8 @@
 
 import os
 
+import netaddr
+
 if os.name == 'nt':
     from neutron.agent.windows import ip_lib
 else:
@@ -25,3 +27,7 @@ OPTS = ip_lib.OPTS
 
 IPWrapper = ip_lib.IPWrapper
 IPDevice = ip_lib.IPDevice
+
+
+def get_ip_version(ip_or_cidr):
+    return netaddr.IPNetwork(ip_or_cidr).version
